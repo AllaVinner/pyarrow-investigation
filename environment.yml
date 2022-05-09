@@ -1,0 +1,7 @@
+name: pyarrow-investigation
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pyarrow
+prefix: C:\Users\joelw\miniconda3\envs\pyarrow-investigation
