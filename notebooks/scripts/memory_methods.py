@@ -16,10 +16,14 @@ def a_function():
 
 
 @profile
-def reading_dataset(dataset_path):
+def process_dataset(input_path, output_path):
     a = 1
-    dataset = ds.dataset(dataset_path, partitioning="hive", format='parquet')
-    sc = dataset.scanner(filter = ds.field('c_float') > 0)
-    tbl = dataset.to_table()
+    dataset = ds.dataset(input_path, partitioning="hive", format='parquet')
+    sc = dataset.scanner(filter=ds.field('c_float') > 0)
+    #tbl = dataset.to_table()
+    #ds.write_dataset(tbl,os.path.join(output_path, 'tbl'), partitioning_flavor='hive', format='parquet')
+    #ds.write_dataset(sc, os.path.join(output_path, 'sc'), partitioning_flavor='hive', format='parquet')
+    ds.write_dataset(sc, os.path.join(output_path, 'sc_partitioned'), partitioning=['c_icat', 'c_cat', 'c_cat2'], partitioning_flavor='hive', format='parquet')
+
 
 
